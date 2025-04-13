@@ -32,7 +32,7 @@ const poolStats = [
 const Dashboard = () => {
   return (
     
-    <Box component="main" sx={{ flexGrow: 1, p: 4, ml: '220px' }}>
+    <Box component="main" sx={{ flexGrow: 1, p: 4 }}>
       <Grid container spacing={3} sx={{ p:2 }}>
         {/* Header boxes */}
         <Grid item xs={12} sm={4}>

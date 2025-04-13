@@ -22,6 +22,7 @@ import PowerIcon from '@mui/icons-material/FlashOn';
 import SecurityIcon from '@mui/icons-material/Security';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+
 const drawerWidth = 220;
 
 const navItems = [
