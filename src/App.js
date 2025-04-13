@@ -56,6 +56,7 @@ import Sidebar from './components/Sidebar';
 import Layout from './components/Layout';
 import Placeholder from './pages/Placeholder';
 import Dashboard from './pages/Dashboard';
+import Miners from './pages/Miners';
 
 function App() {
   return (
@@ -65,7 +66,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Dashboard title="Dashboard" />} />
-            <Route path="/miners" element={<Placeholder title="Miners" />} />
+            <Route path="/miners" element={<Miners title="Miners" />} />
             <Route path="/issues" element={<Placeholder title="Issues" />} />
             <Route path="/earnings" element={<Placeholder title="Earnings" />} />
             <Route path="/inventory" element={<Placeholder title="Inventory" />} />
