@@ -1,0 +1,30 @@
+/* .MuiResponsiveChart-container > svg {
+    margin: 8px !important;
+  } */
+
+/* Top 3 Boxes - Current Hash Rate, Min Hash Rate, Max Hash Rate */
+.css-15yiqq3-MuiGrid-root {
+justify-content: center;
+}
+  
+/* Charts - Adds margin to expand boxes */
+.css-1evyvmv-MuiChartsSurface-root {
+margin: 5px !important;
+}
+
+/* Charts- Sizing and Tranforms Animation */
+.css-b08rnb-MuiPaper-root {
+/* transition: box-shadow 100ms cubic-bezier(0.33, 1, 0.68, 1) !important; */
+transition: box-shadow 30ms linear !important;
+max-width: 500px
+}
+
+/* Charts - Line and Bar Charts */
+.css-1u8xl8z-MuiGrid-root {
+justify-content: center;
+}
+
+/* Bottom 3 Boxes Miner Status, Pool Status, Miner Reboots */
+.css-1lg59ig-MuiGrid-root {
+justify-content: center;
+}
