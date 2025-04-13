@@ -178,7 +178,7 @@ const Dashboard = () => {
           </Paper>
         </Grid>
 
-        {/* ✅ Additional Metrics */}
+        {/* Additional Metrics */}
         <Grid item xs={12} sm={4}>
           <Paper sx={{ p: 2, textAlign: 'center', backgroundColor: '#1e1e1e' }}>
             <Typography variant="subtitle2" color="text.secondary">EXPECTED / EFFECTIVE CAPACITY</Typography>
@@ -198,7 +198,7 @@ const Dashboard = () => {
           </Paper>
         </Grid>
 
-        {/* ✅ ASICs Online */}
+        {/* ASICs Online */}
         <Grid item xs={12}>
           <Paper sx={{ p: 2, textAlign: 'center', backgroundColor: '#222' }}>
             <Typography variant="h6" sx={{ color: '#FFD700' }}>
@@ -211,7 +211,7 @@ const Dashboard = () => {
         </Grid>
       </Grid>
 
-      {/* ✅ Charts Section */}
+      {/* Charts Section */}
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <Paper sx={{ p: 2, backgroundColor: '#121212' }}>
@@ -248,7 +248,7 @@ const Dashboard = () => {
           </Paper>
         </Grid>
       </Grid>
-      {/* ✅ Pie Charts: Miner Types + Status */}
+      {/* Pie Charts: Miner Types + Status */}
       <Grid container spacing={3} sx={{ pt: 2 }}>
       <Grid item xs={12} md={6}>
         <Paper sx={{ p: 2, backgroundColor: '#121212' }}>
@@ -269,9 +269,9 @@ const Dashboard = () => {
               legend: {
                 direction: 'column',
                 position: { vertical: 'middle', horizontal: 'right' },
-                itemGap: 16, // 👈 spacing between each legend item
-                markGap: 12, // 👈 spacing between color swatch and text
-                padding: 40// 👈 spacing between chart and legend
+                itemGap: 16, // spacing between each legend item
+                markGap: 12, // spacing between color swatch and text
+                padding: 40// spacing between chart and legend
               },
             }}
           />
@@ -296,16 +296,16 @@ const Dashboard = () => {
               legend: {
                 direction: 'column',
                 position: { vertical: 'middle', horizontal: 'right' },
-                itemGap: 16, // 👈 spacing between each legend item
-                markGap: 12, // 👈 spacing between color swatch and text
-                padding: 40// 👈 spacing between chart and legend
+                itemGap: 16, // spacing between each legend item
+                markGap: 12, // spacing between color swatch and text
+                padding: 40// spacing between chart and legend
               },
             }}
             />
           </Paper>
         </Grid>
       </Grid>
-      {/* ✅ Status Summary Boxes */}
+      {/* Status Summary Boxes */}
       <Grid container spacing={3} sx={{ pt: 2 }}>
         <Grid item xs={12} md={4}>
           <Paper sx={{ p: 2, backgroundColor: '#121212', height: '100%' }}>
@@ -326,8 +326,6 @@ const Dashboard = () => {
           </Paper>
         </Grid>
       </Grid>
-
-
     </Box>
   );
 };
