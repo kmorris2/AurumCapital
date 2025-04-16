@@ -100,7 +100,7 @@ export default function Miners() {
       <DataGrid
         rows={filteredMiners}
         columns={columns}
-        autoHeight
+        // autoHeight
         pageSize={5}
         sx={{ backgroundColor: '#121212', color: '#fff' }}
       />
@@ -125,8 +125,9 @@ export default function Miners() {
             />
             <Select
               fullWidth
+              label="hello"
               sx={{ mt: 2 }}
-              value={miner.status || 'Healthy'}
+              value={miner.status || ''}
               onChange={(e) => setSelectedMiner({ ...miner, status: e.target.value })}
             >
               <MenuItem value="Healthy">Healthy</MenuItem>
@@ -134,17 +135,17 @@ export default function Miners() {
               <MenuItem value="Failing">Failing</MenuItem>
             </Select>
             <TextField
-                label="Hashrate"
+                label="Hashrate (TH/s)"
                 fullWidth
                 sx={{ mt: 2 }}
-                value={miner.hashrate || ''}
+                value={miner.hashrate || '0 TH/s'}
                 onChange={(e) => setSelectedMiner({ ...miner, hashrate: e.target.value })}
             />
             <TextField
-                label="Temperature"
+                label="Temperature (°C)"
                 fullWidth
                 sx={{ mt: 2 }}
-                value={miner.temp || ''}
+                value={miner.temp || '0°C'}
                 onChange={(e) => setSelectedMiner({ ...miner, temp: e.target.value })}
             />
             <Select
@@ -153,9 +154,9 @@ export default function Miners() {
               value={miner.power || '3200W'}
               onChange={(e) => setSelectedMiner({ ...miner, power: e.target.value })}
             >
-              <MenuItem value="Healthy">3200W</MenuItem>
-              <MenuItem value="Warning">3500W</MenuItem>
-              <MenuItem value="Failing">5500W</MenuItem>
+              <MenuItem value="3200W">3200W</MenuItem>
+              <MenuItem value="3500W">3500W</MenuItem>
+              <MenuItem value="5500W">5500W</MenuItem>
             </Select>
           </DialogContent>
           <DialogActions>
@@ -167,4 +168,3 @@ export default function Miners() {
     </Box>
   );
 }
-
