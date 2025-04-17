@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
-  Box, Button, Grid, Paper, Typography, TextField,
-  MenuItem, Switch, Slider, IconButton
+  Box, Button, Typography, Paper, Grid, TextField,
+  MenuItem, Switch, Slider, IconButton, Dialog, DialogTitle, DialogContent, DialogActions
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -33,6 +33,13 @@ export default function AlertsAndTriggers() {
     { ...triggerDefaults, name: 'Hardware Errors Reboot', condition: 'Miner Hardware Errors Trigger', interval: 10 }
   ]);
 
+  const [fanModalOpen, setFanModalOpen] = useState(false);
+  const [fanSettings, setFanSettings] = useState({
+    alerting: false,
+    error: 3127,
+    warning: 3518
+  });
+
   const handleAddTrigger = () => {
     setTriggers(prev => [...prev, { ...triggerDefaults }]);
   };
@@ -45,6 +52,10 @@ export default function AlertsAndTriggers() {
 
   const handleRemove = (index) => {
     setTriggers(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const handleFanChange = (type, value) => {
+    setFanSettings(prev => ({ ...prev, [type]: value }));
   };
 
   return (
@@ -122,6 +133,12 @@ export default function AlertsAndTriggers() {
                 ))}
               </TextField>
             </Grid>
+
+            <Grid item xs={12} sm={6} textAlign="right">
+              <Button variant="outlined" onClick={() => setFanModalOpen(true)}>
+                Fan Speed Settings
+              </Button>
+            </Grid>
           </Grid>
         </Paper>
       ))}
@@ -131,6 +148,53 @@ export default function AlertsAndTriggers() {
           Add Trigger
         </Button>
       </Box>
+
+      {/* Fan Modal */}
+      <Dialog open={fanModalOpen} onClose={() => setFanModalOpen(false)}>
+        <DialogTitle>Edit Fan Speed Trigger</DialogTitle>
+        <DialogContent sx={{ backgroundColor: '#121212', color: '#fff' }}>
+          <Typography gutterBottom>Toggle Alerting</Typography>
+          <Switch
+            checked={fanSettings.alerting}
+            onChange={(e) => handleFanChange('alerting', e.target.checked)}
+          />
+
+          <Typography gutterBottom>Fan Speed Range (RPM)</Typography>
+          <Slider
+            value={[fanSettings.error, fanSettings.warning]}
+            onChange={(e, newValue) => handleFanChange('error', newValue[0]) || handleFanChange('warning', newValue[1])}
+            min={2000}
+            max={5000}
+            step={10}
+            valueLabelDisplay="auto"
+          />
+
+          <Grid container spacing={2} sx={{ mt: 2 }}>
+            <Grid item xs={6}>
+              <TextField
+                fullWidth
+                label="Error Less Than"
+                type="number"
+                value={fanSettings.error}
+                onChange={(e) => handleFanChange('error', parseInt(e.target.value))}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                fullWidth
+                label="Warn Less Than"
+                type="number"
+                value={fanSettings.warning}
+                onChange={(e) => handleFanChange('warning', parseInt(e.target.value))}
+              />
+            </Grid>
+          </Grid>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setFanModalOpen(false)}>Cancel</Button>
+          <Button variant="contained" onClick={() => setFanModalOpen(false)}>Apply</Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }
