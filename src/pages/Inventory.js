@@ -95,7 +95,7 @@ export default function Inventory() {
       </Grid>
 
       {/* --- Cycle Count Table (DataGrid) --- */}
-        <Grid container spacing={2} sx={{ p:2, mb: 3 }}>
+        <Grid container spacing={2} sx={{ p:2, mb: 3, mt: 6 }}>
         <Grid item xs={12}>
         <Paper sx={{ p: 2, backgroundColor: '#121212', color: '#fff' }}>
         <Box sx={{ mt: 3, backgroundColor: '#121212', borderRadius: 1, overflowX: 'auto', maxWidth: '100%', mx: 'auto' }}>
@@ -132,7 +132,7 @@ export default function Inventory() {
         </Grid>
         </Grid>
 
-<Grid container spacing={2}>
+<Grid container spacing={2} sx={{mt: 6}}>
   {/* --- Controls (Search + Actions) --- */}
 <Grid container spacing={2} justifyContent="left" alignItems="center">
 {/* Upload Button */}
@@ -170,7 +170,7 @@ export default function Inventory() {
       {/* --- Inventory Table --- */}
       <Grid container spacing={2}>
         <Grid item xs={12}>
-        <Box sx={{ mt: 3, backgroundColor: '#121212', borderRadius: 1, overflowX: 'auto', maxWidth: '100%', mx: 'auto' }}>
+        <Box sx={{ mt: 1, backgroundColor: '#121212', borderRadius: 1, overflowX: 'auto', maxWidth: '100%', mx: 'auto' }}>
         <DataGrid
           autoHeight
           rows={filteredAssets}
