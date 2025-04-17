@@ -98,80 +98,98 @@ export default function Inventory() {
         <Grid container spacing={2} sx={{ p:2, mb: 3 }}>
         <Grid item xs={12}>
         <Paper sx={{ p: 2, backgroundColor: '#121212', color: '#fff' }}>
-            <Typography variant="h6" gutterBottom>Cycle Counts</Typography>
-            <Box sx={{ overflowX: 'auto' }}>
-  <DataGrid
-    autoHeight
-    rows={cycleCounts.map((item, index) => ({ id: index + 1, ...item }))}
-    columns={[
-        { field: 'type', headerName: 'Asset Type', flex: 1 },
-        { field: 'summary', headerName: 'Summary', flex: 2 },
-        { field: 'last', headerName: 'Last Cycle Date', flex: 1 },
-        { field: 'next', headerName: 'Next Cycle Date', flex: 1 },
-        {
-            field: 'actions',
-            headerName: 'Actions',
-            flex: 1,
-            sortable: false,
-            renderCell: () => (
-            <Button size="small" variant="outlined">Actions</Button>
-            )
-        }
-        ]}
-    pageSize={5}
-    sx={{
-      backgroundColor: '#121212',
-      color: '#fff',
-      minWidth: 1000,
-    }}
-  />
-</Box>
-
+        <Box sx={{ mt: 3, backgroundColor: '#121212', borderRadius: 1, overflowX: 'auto', maxWidth: '100%', mx: 'auto' }}>
+        <Typography variant="h6" gutterBottom sx={{ px: 2, pt: 2 }}>Cycle Counts</Typography>
+        <DataGrid
+          autoHeight
+          rows={cycleCounts.map((item, index) => ({ id: index + 1, ...item }))}
+          columns={[
+            { field: 'type', headerName: 'Asset Type', flex: 1 },
+            { field: 'summary', headerName: 'Summary', flex: 2 },
+            { field: 'last', headerName: 'Last Cycle Date', flex: 1 },
+            { field: 'next', headerName: 'Next Cycle Date', flex: 1 },
+            {
+              field: 'actions',
+              headerName: 'Actions',
+              flex: 1,
+              sortable: false,
+              renderCell: () => <Button size="small" variant="outlined">Actions</Button>
+            }
+          ]}
+          pageSize={5}
+          sx={{
+            backgroundColor: '#121212',
+            color: '#fff',
+            minWidth: 1000,
+            '& .MuiDataGrid-columnHeaders': {
+              backgroundColor: '#1e1e1e',
+            },
+          }}
+        />
+      </Box>
+      
         </Paper>
         </Grid>
         </Grid>
 
+<Grid container spacing={2}>
+  {/* --- Controls (Search + Actions) --- */}
+<Grid container spacing={2} justifyContent="left" alignItems="center">
+{/* Upload Button */}
+<Grid item>
+  <Button variant="contained">Upload Assets</Button>
+</Grid>
 
-      {/* --- Controls (Search + Actions) --- */}
-      <Grid container spacing={2} sx={{ mb: 2 }} alignItems="center">
-        <Grid item xs={12} md={8}>
-          <Box sx={{ display: 'flex', gap: 1 }}>
-            <Button variant="contained">Upload Assets</Button>
-            <Button variant="outlined">Sync Assets</Button>
-            <Button variant="outlined">Add Asset</Button>
-          </Box>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <TextField
-            size="small"
-            fullWidth
-            label="Search"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </Grid>
-      </Grid>
+{/* Sync Button */}
+<Grid item>
+  <Button variant="outlined">Sync Assets</Button>
+</Grid>
+
+{/* Add Asset Button */}
+<Grid item>
+  <Button variant="outlined">Add Asset</Button>
+</Grid>
+
+{/* Search Input */}
+<Grid item xs={12} sm={6} md={4}>
+  <TextField
+    size="small"
+    fullWidth
+    label="Search"
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+  />
+</Grid>
+      {/* --- Export Button --- */}
+      <Grid item xs={12}>
+      <Button variant="outlined">Export</Button>
+    </Grid>
+</Grid>
+
 
       {/* --- Inventory Table --- */}
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Box sx={{ width: '100%', overflowX: 'auto' }}>
-            <DataGrid
-              rows={filteredAssets}
-              columns={columns}
-              pageSize={5}
-              autoHeight
-              sx={{ backgroundColor: '#121212', color: '#fff', minWidth: 1000 }}
-            />
-          </Box>
+        <Box sx={{ mt: 3, backgroundColor: '#121212', borderRadius: 1, overflowX: 'auto', maxWidth: '100%', mx: 'auto' }}>
+        <DataGrid
+          autoHeight
+          rows={filteredAssets}
+          columns={columns}
+          pageSize={5}
+          sx={{
+            backgroundColor: '#121212',
+            color: '#fff',
+            minWidth: 1000,
+            '& .MuiDataGrid-columnHeaders': {
+              backgroundColor: '#1e1e1e',
+            },
+          }}
+        />
+      </Box>
+      
         </Grid>
       </Grid>
 
-      {/* --- Export Button --- */}
-      <Grid container spacing={2} sx={{ mt: 2 }}>
-        <Grid item xs={12}>
-          <Button variant="outlined">Export</Button>
-        </Grid>
       </Grid>
     </Box>
   );
