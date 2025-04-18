@@ -61,6 +61,7 @@ import Issues from './pages/Issues';
 import Earnings from './pages/Earnings';
 import Inventory from './pages/Inventory';
 import AlertsAndTriggers from './pages/AlertsAndTriggers';
+import Pools from './pages/Pools';
 
 function App() {
   return (
@@ -75,7 +76,7 @@ function App() {
             <Route path="/earnings" element={<Earnings title="Earnings" />} />
             <Route path="/inventory" element={<Inventory title="Inventory" />} />
             <Route path="/alerts-triggers" element={<AlertsAndTriggers title="Alerts & Triggers" />} />
-            <Route path="/pools" element={<Placeholder title="Pools" />} />
+            <Route path="/pools" element={<Pools title="Pools" />} />
             <Route path="/reports" element={<Placeholder title="Reports" />} />
             <Route path="/site-map" element={<Placeholder title="Site Map" />} />
             <Route path="/power-control" element={<Placeholder title="Power Control" />} />
