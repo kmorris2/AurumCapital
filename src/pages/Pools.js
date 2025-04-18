@@ -21,11 +21,11 @@ const poolData = [
   {
     id: 'ethpool',
     title: 'us1.ethermine.org:4444',
-    coin: 'Ethereum [ETH]',
+    coin: 'Bitcoin [BTC]',
     shares: [
-      { time: '08:00', accepted: 6200, rejected: 0, stale: 0 },
-      { time: '09:00', accepted: 6300, rejected: 50, stale: 10 },
-      { time: '10:00', accepted: 6000, rejected: 20, stale: 5 },
+      { time: '08:00', accepted: 6200, rejected: 1000, stale: 3000 },
+      { time: '09:00', accepted: 9300, rejected: 800, stale: 2000 },
+      { time: '10:00', accepted: 9800, rejected: 500, stale: 200 },
     ],
     accepted: '3,206,294,288',
     rejected: 0,
@@ -35,7 +35,7 @@ const poolData = [
   {
     id: 'nicehash',
     title: 'grincuckaroo29.usa-new.nicehash...',
-    coin: 'NiceHash V2 [CUCKAROOD29]',
+    coin: 'Bitcoin [BTC]',
     shares: [
       { time: '08:00', accepted: 3100, rejected: 0, stale: 0 },
       { time: '09:00', accepted: 3000, rejected: 0, stale: 0 },
