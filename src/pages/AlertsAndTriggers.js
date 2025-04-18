@@ -33,8 +33,8 @@ export default function AlertsAndTriggers() {
     { ...triggerDefaults, name: 'Hardware Errors Reboot', condition: 'Miner Hardware Errors Trigger', interval: 10 }
   ]);
 
-  const [fanModalOpen, setFanModalOpen] = useState(false);
-  const [fanSettings, setFanSettings] = useState({
+  const [hydroModalOpen, setHydroModalOpen] = useState(false);
+  const [hydroSettings, setHydroSettings] = useState({
     alerting: false,
     error: 3127,
     warning: 3518
@@ -55,7 +55,7 @@ export default function AlertsAndTriggers() {
   };
 
   const handleFanChange = (type, value) => {
-    setFanSettings(prev => ({ ...prev, [type]: value }));
+    setHydroSettings(prev => ({ ...prev, [type]: value }));
   };
 
   return (
@@ -135,8 +135,8 @@ export default function AlertsAndTriggers() {
             </Grid>
 
             <Grid item xs={12} sm={6} textAlign="right">
-              <Button variant="outlined" onClick={() => setFanModalOpen(true)}>
-                Fan Speed Settings
+              <Button variant="outlined" onClick={() => setHydroModalOpen(true)}>
+                Hydro Heat Settings
               </Button>
             </Grid>
           </Grid>
@@ -150,21 +150,21 @@ export default function AlertsAndTriggers() {
       </Box>
 
       {/* Fan Modal */}
-      <Dialog open={fanModalOpen} onClose={() => setFanModalOpen(false)}>
-        <DialogTitle>Edit Fan Speed Trigger</DialogTitle>
+      <Dialog open={hydroModalOpen} onClose={() => setHydroModalOpen(false)}>
+        <DialogTitle>Edit Hydro Heat Trigger</DialogTitle>
         <DialogContent sx={{ backgroundColor: '#121212', color: '#fff' }}>
           <Typography gutterBottom>Toggle Alerting</Typography>
           <Switch
-            checked={fanSettings.alerting}
+            checked={hydroSettings.alerting}
             onChange={(e) => handleFanChange('alerting', e.target.checked)}
           />
 
-          <Typography gutterBottom>Fan Speed Range (RPM)</Typography>
+          <Typography gutterBottom>Hydro Heat Range (°C)</Typography>
           <Slider
-            value={[fanSettings.error, fanSettings.warning]}
+            value={[hydroSettings.error, hydroSettings.warning]}
             onChange={(e, newValue) => handleFanChange('error', newValue[0]) || handleFanChange('warning', newValue[1])}
-            min={2000}
-            max={5000}
+            min={0}
+            max={110}
             step={10}
             valueLabelDisplay="auto"
           />
@@ -173,26 +173,26 @@ export default function AlertsAndTriggers() {
             <Grid item xs={6}>
               <TextField
                 fullWidth
-                label="Error Less Than"
+                label="Error Less Than °C"
                 type="number"
-                value={fanSettings.error}
+                value={hydroSettings.error}
                 onChange={(e) => handleFanChange('error', parseInt(e.target.value))}
               />
             </Grid>
             <Grid item xs={6}>
               <TextField
                 fullWidth
-                label="Warn Less Than"
+                label="Warn Less Than °C"
                 type="number"
-                value={fanSettings.warning}
+                value={hydroSettings.warning}
                 onChange={(e) => handleFanChange('warning', parseInt(e.target.value))}
               />
             </Grid>
           </Grid>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setFanModalOpen(false)}>Cancel</Button>
-          <Button variant="contained" onClick={() => setFanModalOpen(false)}>Apply</Button>
+          <Button onClick={() => setHydroModalOpen(false)}>Cancel</Button>
+          <Button variant="contained" onClick={() => setHydroModalOpen(false)}>Apply</Button>
         </DialogActions>
       </Dialog>
       {/* Communication Channels */}
