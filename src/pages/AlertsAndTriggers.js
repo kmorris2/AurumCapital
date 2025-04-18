@@ -195,6 +195,21 @@ export default function AlertsAndTriggers() {
           <Button variant="contained" onClick={() => setFanModalOpen(false)}>Apply</Button>
         </DialogActions>
       </Dialog>
+      {/* Communication Channels */}
+      <Box sx={{ mt: 5 }}>
+        <Typography variant="h6" gutterBottom>Integrations</Typography>
+        <Grid container spacing={2}>
+          <Grid item>
+            <Button variant="outlined" color="primary">Connect Slack</Button>
+          </Grid>
+          <Grid item>
+            <Button variant="outlined" color="info">Connect Telegram</Button>
+          </Grid>
+          <Grid item>
+            <Button variant="outlined" color="warning">Connect Discord</Button>
+          </Grid>
+        </Grid>
+      </Box>
     </Box>
   );
 }
