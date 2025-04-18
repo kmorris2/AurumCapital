@@ -29,8 +29,8 @@ const defaultReport = {
 
 export default function Reports() {
   const [reports, setReports] = useState([
-    { ...defaultReport, email: 'user1@foreman.mn', frequency: 'Daily' },
-    { ...defaultReport, email: 'user2@foreman.mn', frequency: 'Weekly' },
+    { ...defaultReport, email: 'user1@aurum-capital@gmail.com', frequency: 'Daily' },
+    { ...defaultReport, email: 'user2@aurum-capital@gmail.com', frequency: 'Weekly' },
   ]);
   const [openAdd, setOpenAdd] = useState(false);
   const [openCustomize, setOpenCustomize] = useState(false);
@@ -141,6 +141,9 @@ export default function Reports() {
           <Select fullWidth value={formData.frequency} onChange={(e) => setFormData({ ...formData, frequency: e.target.value })}>
             <MenuItem value="Daily">Daily</MenuItem>
             <MenuItem value="Weekly">Weekly</MenuItem>
+            <MenuItem value="Monthly">Monthly</MenuItem>
+            <MenuItem value="Quarterly">Quarterly</MenuItem>
+            <MenuItem value="Yearly">Yearly</MenuItem>
           </Select>
         </DialogContent>
         <DialogActions>
