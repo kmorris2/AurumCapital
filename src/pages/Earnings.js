@@ -38,24 +38,28 @@ const Earnings = () => {
     const iHash = parseFloat(internalHashrate);
     const price = parseFloat(btcPrice);
     const f = parseFloat(fees);
-  
-    // Reward per block is typically ~6.25 BTC (hardcoded for now)
     const blockReward = 6.25;
-  
+
     if (!isNaN(d) && !isNaN(nHash) && !isNaN(iHash) && !isNaN(price) && !isNaN(f)) {
-      const totalReward = blockReward + (f / price); // fees added in BTC form
-      const blocksPerDay = 144; // average blocks per day
-  
+      const totalReward = blockReward + (f / price);
+      const blocksPerDay = 144;
       const userShare = iHash / nHash;
       const dailyRevenueBTC = totalReward * blocksPerDay * userShare;
       const dailyRevenueUSD = dailyRevenueBTC * price;
-  
-      setRevenue(dailyRevenueUSD.toFixed(2));
+      setRevenue(dailyRevenueUSD.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
     } else {
       setRevenue('Invalid input');
     }
   };
-  
+
+  const clearInputs = () => {
+    setDifficulty('');
+    setNetworkHashrate('');
+    setInternalHashrate('');
+    setBtcPrice('');
+    setFees('');
+    setRevenue(null);
+  };
 
   if (!mockMinersActive) {
     return (
@@ -204,6 +208,9 @@ const Earnings = () => {
               </Grid>
               <Grid item xs={12}>
                 <Button variant="contained" onClick={calculateRevenue}>Calculate</Button>
+                {revenue && (
+                  <Button onClick={clearInputs} sx={{ ml: 2 }} variant="outlined">Clear</Button>
+                )}
               </Grid>
               {revenue && (
                 <Grid item xs={12}>
