@@ -6,8 +6,8 @@ import {
 import { BarChart } from '@mui/x-charts/BarChart';
 
 const initialReports = [
-  { id: 1, email: 'user1@foreman.mn', type: 'Profit Report', frequency: 'Daily' },
-  { id: 2, email: 'user2@foreman.mn', type: 'Profit Report', frequency: 'Weekly' },
+  { id: 1, email: 'user1@aurumcapital@gmail.com', type: 'Profit Report', frequency: 'Daily' },
+  { id: 2, email: 'user2@aurumcaptial@gmail.com', type: 'Profit Report', frequency: 'Weekly' },
 ];
 
 const sampleData = {
