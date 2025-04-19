@@ -63,6 +63,7 @@ import Inventory from './pages/Inventory';
 import AlertsAndTriggers from './pages/AlertsAndTriggers';
 import Pools from './pages/Pools';
 import Reports from './pages/Reports';
+import SiteMap from './pages/SiteMap';
 
 function App() {
   return (
@@ -79,7 +80,7 @@ function App() {
             <Route path="/alerts-triggers" element={<AlertsAndTriggers title="Alerts & Triggers" />} />
             <Route path="/pools" element={<Pools title="Pools" />} />
             <Route path="/reports" element={<Reports title="Reports" />} />
-            <Route path="/site-map" element={<Placeholder title="Site Map" />} />
+            <Route path="/site-map" element={<SiteMap title="Site Map" />} />
             <Route path="/power-control" element={<Placeholder title="Power Control" />} />
             <Route path="/security" element={<Placeholder title="Security" />} />
           </Routes>
