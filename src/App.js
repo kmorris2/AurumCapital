@@ -65,6 +65,7 @@ import Pools from './pages/Pools';
 import Reports from './pages/Reports';
 import SiteMap from './pages/SiteMap';
 import PowerControl from './pages/PowerControl';
+import Security from './pages/Security'
 
 
 function App() {
@@ -84,7 +85,7 @@ function App() {
             <Route path="/reports" element={<Reports title="Reports" />} />
             <Route path="/site-map" element={<SiteMap title="Site Map" />} />
             <Route path="/power-control" element={<PowerControl title="Power Control" />} />
-            <Route path="/security" element={<Placeholder title="Security" />} />
+            <Route path="/security" element={<Security title="Security" />} />
           </Routes>
         </Layout>
       </Router>
