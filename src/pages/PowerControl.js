@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   Box, Typography, Grid, Button, Paper, Table, TableHead, TableRow,
   TableCell, TableBody, MenuItem, Select, Dialog, DialogTitle, DialogContent,
-  DialogActions, TextField, FormControl, InputLabel
+  DialogActions, TextField, FormControl, InputLabel, InputAdornment
 } from '@mui/material';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -11,8 +11,16 @@ import dayjs from 'dayjs';
 
 export default function PowerControl() {
   const [controls, setControls] = useState([]);
-  const [history, setHistory] = useState([]);
+  const [history, setHistory] = useState([
+    { name: 'Strike of 50 exceeded', date: 'April 2, 2025, 2:39 p.m.', direction: 'Power Up', controlTarget: 'All Target Miners', status: 'Complete' },
+    { name: 'Strike of 50 below', date: 'April 4, 2025, 1:33 p.m.', direction: 'Power Down', controlTarget: 'All Target Miners', status: 'Complete' },
+    { name: 'Strike of 50 exceeded', date: 'April 14, 2025, 1:23 p.m.', direction: 'Power Up', controlTarget: 'All Target Miners', status: 'Complete' },
+    { name: 'Strike of 50 exceeded', date: 'April 14, 2025, 1:19 p.m.', direction: 'Power Down', controlTarget: 'All Target Miners', status: 'Complete' },
+    { name: 'Strike of 50 exceeded', date: 'April 15, 2025, 12:34 p.m.', direction: 'Power Down', controlTarget: 'All Target Miners', status: 'Complete' }
+  ]);
   const [modalOpen, setModalOpen] = useState(false);
+  const [search, setSearch] = useState('');
+  const [entryLimit, setEntryLimit] = useState(10);
   const [formData, setFormData] = useState({
     name: '',
     runTime: 'Now',
@@ -39,22 +47,48 @@ export default function PowerControl() {
     setModalOpen(false);
   };
 
+  const filteredControls = controls.filter(c => c.name.toLowerCase().includes(search.toLowerCase()));
+  const filteredHistory = history.filter(h => h.name.toLowerCase().includes(search.toLowerCase()));
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Box sx={{ p: 3 }}>
         <Typography variant="h5" gutterBottom>Power Control</Typography>
 
-        {/* Overview Widgets */}
         <Grid container spacing={2} sx={{ mb: 3 }}>
           <Grid item><Paper sx={{ p: 2 }}>6887 / 6907<br /><small>Available Miners</small></Paper></Grid>
           <Grid item><Paper sx={{ p: 2 }}>22.282 MW<br /><small>Total Power Draw</small></Paper></Grid>
           <Grid item><Paper sx={{ p: 2 }}>$26,738.91 USD<br /><small>Power Cost (24 hrs)</small></Paper></Grid>
         </Grid>
 
-        {/* Power Controls */}
         <Grid container justifyContent="space-between" alignItems="center" sx={{ mb: 1 }}>
           <Typography variant="h6">Power Controls</Typography>
-          <Button variant="contained" onClick={() => setModalOpen(true)}>Add New</Button>
+          <Box>
+            <Button variant="outlined" sx={{ mr: 1 }}>Single Run</Button>
+            <Button variant="contained" onClick={() => setModalOpen(true)}>Add New</Button>
+          </Box>
+        </Grid>
+
+        <Grid container justifyContent="space-between" alignItems="center" sx={{ mb: 1 }}>
+          <Grid item>
+            <TextField
+              select
+              label="Show"
+              value={entryLimit}
+              onChange={e => setEntryLimit(parseInt(e.target.value))}
+              sx={{ width: 100 }}
+            >
+              {[10, 20, 50].map(num => <MenuItem key={num} value={num}>{num}</MenuItem>)}
+            </TextField>
+          </Grid>
+          <Grid item>
+            <TextField
+              label="Search"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              sx={{ width: 200 }}
+            />
+          </Grid>
         </Grid>
 
         <Table size="small">
@@ -70,7 +104,7 @@ export default function PowerControl() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {controls.map((c, i) => (
+            {filteredControls.slice(0, entryLimit).map((c, i) => (
               <TableRow key={i}>
                 <TableCell>{c.name}</TableCell>
                 <TableCell>{c.direction}</TableCell>
@@ -84,25 +118,46 @@ export default function PowerControl() {
           </TableBody>
         </Table>
 
-        {/* History */}
         <Box sx={{ mt: 4 }}>
           <Grid container justifyContent="space-between" alignItems="center" sx={{ mb: 1 }}>
             <Typography variant="h6">Power Controls History</Typography>
             <Button variant="outlined">Export</Button>
           </Grid>
 
+          <Grid container justifyContent="space-between" alignItems="center" sx={{ mb: 1 }}>
+            <Grid item>
+              <TextField
+                select
+                label="Show"
+                value={entryLimit}
+                onChange={e => setEntryLimit(parseInt(e.target.value))}
+                sx={{ width: 100 }}
+              >
+                {[10, 20, 50].map(num => <MenuItem key={num} value={num}>{num}</MenuItem>)}
+              </TextField>
+            </Grid>
+            <Grid item>
+              <TextField
+                label="Search"
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                sx={{ width: 200 }}
+              />
+            </Grid>
+          </Grid>
+
           <Table size="small">
             <TableHead>
               <TableRow>
                 <TableCell>Name</TableCell>
-                <TableCell>Date</TableCell>
+                <TableCell>Log Date</TableCell>
                 <TableCell>Direction</TableCell>
                 <TableCell>Control Target</TableCell>
                 <TableCell>Status</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {history.map((h, i) => (
+              {filteredHistory.slice(0, entryLimit).map((h, i) => (
                 <TableRow key={i}>
                   <TableCell>{h.name}</TableCell>
                   <TableCell>{h.date}</TableCell>
