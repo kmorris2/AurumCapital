@@ -92,3 +92,7 @@ package-lock.json        Locked dependency versions
 To add a screen, create its component in `src/pages/`, register a route in `src/App.js`, and add a navigation item in `src/components/Sidebar.js`. Shared visual changes belong in `src/theme/theme.js` or the layout components. Sample datasets and interaction handlers currently live alongside their page components.
 
 Connecting the prototype to real operations would require API integrations, persistent storage, authentication and authorization, input validation, and tests for the resulting workflows.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).

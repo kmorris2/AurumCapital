@@ -2,6 +2,7 @@
   "name": "aurum-capital-app",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "dependencies": {
     "@date-io/dayjs": "^3.2.0",
     "@emotion/react": "^11.14.0",
